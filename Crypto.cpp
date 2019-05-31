@@ -58,6 +58,107 @@ void GenK() { //Генерация К
 	}
 }
 
+void matr() {
+	int x1, x2, x3;
+	int pos;
+	int key;
+	int ii[1488];
+	int pos2;
+	int pos3;
+	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
+	string s2;
+	string s3;
+	string s4;
+	cout << "Matrix 3x3\n" << "Enter first strochka:\n";
+	int z1, z2, z3;
+	cin >> z1 >> z2 >> z3;
+	cout << "Enter second strochka :\n"; //Ввод матрицы
+	int z4, z5, z6;
+	cin >> z4 >> z5 >> z6;
+	cout << "Enter third strochka :\n";
+	int z7, z8, z9;
+	cin >> z7 >> z8 >> z9;
+	int A = (z1 * z5 * z9 + z2 * z6 * z7 + z3 * z4 * z8) - (z3 * z5 * z7 + z2 * z4 * z9 + z1 * z8 * z6);
+	if (A == 0) { //Проверка обратимости матрицы
+		cout << "Matrix ne obratima!\n";
+	}
+	else {
+		int dlina = s.size();
+		if (dlina % 3 == 1)
+			dlina = dlina + 2;
+		if (dlina % 3 == 2)
+			dlina = dlina + 1;
+		cout << "crypt info:\n";
+		for (int i = 0; i < dlina; i++) { //считывание размера сообщения и цикл работы с каждым символом
+			if (i % 3 == 0 & i < s.size())
+				pos = str1.find(s[i]);
+			if (i % 3 == 1 & i < s.size()) //Нахождение позиции символов в алфавите
+				pos2 = str1.find(s[i]);
+			if (i % 3 == 2 & i < s.size())
+			{
+				pos3 = str1.find(s[i]); //определение позиции символа в алфавите
+				ii[i - 2] = pos * z1 + pos2 * z2 + pos3 * z3;
+				ii[i - 1] = pos * z4 + pos2 * z5 + pos3 * z6;
+				ii[i] = pos * z7 + pos2 * z8 + pos3 * z9;
+				cout << ii[i - 2] << " " << ii[i - 1] << " " << ii[i] << " ";
+				//шифрование символа
+			}
+			if (i % 3 == 1 & i > s.size() - 1)
+				pos2 = 0;
+			if (i % 3 == 2 & i > s.size() - 1)
+			{
+				pos3 = 0; //определение позиции символа в алфавите
+				ii[i - 2] = pos * z1 + pos2 * z2 + pos3 * z3;
+				ii[i - 1] = pos * z4 + pos2 * z5 + pos3 * z6;
+				ii[i] = pos * z7 + pos2 * z8 + pos3 * z9;
+				if (pos2 == 0)
+					cout << ii[i - 2];
+				if (pos3 == 0 & pos2 != 0)
+					cout << ii[i - 2] << " " << ii[i - 1];
+				//Шифрование последнего блока символов
+			}
+		}
+		cout << endl << endl;
+		int v1, v2, v3, v4, v5, v6, v7, v8, v9;
+		v1 = z5 * z9 - z6 * z8;
+		v4 = (-1) * (z4 * z9 - z7 * z6);
+		v7 = z4 * z8 - z7 * z5;
+		v2 = (-1) * (z2 * z9 - z3 * z8);//Расчёт обратной матрицы
+		v5 = z1 * z9 - z7 * z3;
+		v8 = (-1) * (z1 * z8 - z7 * z2);
+		v3 = z2 * z6 - z5 * z3;
+		v6 = (-1) * (z1 * z6 - z4 * z3);
+		v9 = z1 * z5 - z4 * z2;
+		cout << "Matrix dopolneniya:\n" << v1 << "  " << v4 << "  " << v7 << endl << v2 << "  " << v5 << "  " << v8 << endl << v3 << "  " << v6 << "  " << v9 << endl;
+		cout << "Matrix transponirovannaya:\n" << v1 << "  " << v2 << "  " << v3 << endl << v4 << "  " << v5 << "  " << v6 << endl << v7 << "  " << v8 << "  " << v9 << endl;
+		cout << "Matrix obratnaya:\n" << v1 << "/" << A << "  " << v2 << "/" << A << "  " << v3 << "/" << A << "  " << endl << v4 << "/" << A << "  " << v5 << "/" << A << "  " << v6 << "/" << A << "  " << endl << v7 << "/" << A << "  " << v8 << "/" << A << "  " << v9 << "/" << A << "  " << endl;
+		for (int i = 0; i < dlina; i++) { //считывание размера сообщения и цикл работы с каждым символом
+			if (i % 3 == 0 & i < s.size())
+				pos = str1.find(s[i]);
+			if (i % 3 == 1 & i < s.size()) //Определение позиции символов в алфавите
+				pos2 = str1.find(s[i]);
+			if (i % 3 == 2 & i < s.size())
+			{
+				pos3 = str1.find(s[i]); //определение позиции символа в алфавите
+				s[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
+				s[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
+				s[i] = str1[(ii[i - 2] * v7 + ii[i - 1] * v8 + ii[i] * v9) / A];
+				//шифрование символа
+			}
+			if (i % 3 == 1 & i > s.size() - 1)
+				pos2 = 0;
+			if (i % 3 == 2 & i > s.size() - 1)
+			{
+				pos3 = 0; //определение позиции символа в алфавите
+				s[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
+				s[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
+				//Шифрование последних символов
+			}
+		}
+		cout << "decrypt info:\n" << s << "\n"; //вывод расшифрованного сообщения
+	}
+}
+
 void pleif() {
 	int pos;
 	int pos2;
@@ -7085,7 +7186,7 @@ int main() {
 		getline(cin, s); //считывание строки с сообщением
 		int c;
 		cout << "\nВведите номер нужного шифра : \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
-			"   Python - 5.Белазо\n   Python - 6.Виженер\n   Python - Сделать - 7.Матричный\n\n   С++ - 8.Плейфер\n"
+			"   Python - 5.Белазо\n   Python - 6.Виженер\n\n   С++ - 7.Матричный\n   С++ - 8.Плейфер\n"
 			"   С++ - 9.Вертикальная перестановка\n   C++ - 10.Решетка Кардано\n\n   Python - 11.Блокнот Шеннона\n"
 			"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
 			"   C++ - 17.ГОСТ 34.10-94\n   С++ - 18.ГОСТ 34.10-2012\n   С++ - 19.Магма\n\n   Python - 20.Диффи-Хеллман\n\n"
@@ -7112,7 +7213,7 @@ int main() {
 			system("vizhener.py");
 			break;
 		case 7:
-			//system("matrich.py");
+			matr();
 			break;
 		case 8:
 			pleif();

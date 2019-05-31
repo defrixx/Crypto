@@ -267,6 +267,175 @@ void VertP() {
 	cout << endl << "Расшифрованное сообщение:" << endl << s << endl; //Вывод расшифрованного сообщения
 }
 
+void Kard() {
+	int ii[1488];
+	int randd;
+	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
+	string s2;
+	int zz = s.size();
+	cout << "Решетка Кардано 10х6:\n\n" //Вывод используемой решетки
+		<< "0100000000\n1000101100\n0100010001\n0001000100\n0100000000\n0010011001\n\n";
+	while (s.size() % 60 != 0) { //Дополонение сообщения
+		randd = rand() % 65;
+		s2 = str1[randd];
+		s = s + s2;
+	}
+	cout << "Зашифрование:\n"; //вывод зашифрованного сообщения
+	for (int i = 59; i < s.size(); i++) { //Замена символов
+										  //Первый десяток
+		ii[i - 59] = str1.find(s[i - 44]);
+		ii[i - 58] = str1.find(s[i - 59]);
+		ii[i - 57] = str1.find(s[i - 29]);
+		ii[i - 56] = str1.find(s[i - 43]);
+		ii[i - 55] = str1.find(s[i - 42]);
+		ii[i - 54] = str1.find(s[i - 28]);
+		ii[i - 53] = str1.find(s[i - 27]);
+		ii[i - 52] = str1.find(s[i - 41]);
+		ii[i - 51] = str1.find(s[i - 14]);
+		ii[i - 50] = str1.find(s[i - 26]);
+		//Второй десяток
+		ii[i - 49] = str1.find(s[i - 58]);
+		ii[i - 48] = str1.find(s[i - 25]);
+		ii[i - 47] = str1.find(s[i - 13]);
+		ii[i - 46] = str1.find(s[i - 12]);
+		ii[i - 45] = str1.find(s[i - 56]);
+		ii[i - 44] = str1.find(s[i - 11]);
+		ii[i - 43] = str1.find(s[i - 57]);
+		ii[i - 42] = str1.find(s[i - 55]);
+		ii[i - 41] = str1.find(s[i - 40]);
+		ii[i - 40] = str1.find(s[i - 10]);
+		//Третий десяток
+		ii[i - 39] = str1.find(s[i - 9]);
+		ii[i - 38] = str1.find(s[i - 54]);
+		ii[i - 37] = str1.find(s[i - 39]);
+		ii[i - 36] = str1.find(s[i - 24]);
+		ii[i - 35] = str1.find(s[i - 8]);
+		ii[i - 34] = str1.find(s[i - 53]);
+		ii[i - 33] = str1.find(s[i - 38]);
+		ii[i - 32] = str1.find(s[i - 23]);
+		ii[i - 31] = str1.find(s[i - 7]);
+		ii[i - 30] = str1.find(s[i - 52]);
+		//четвертый десяток
+		ii[i - 29] = str1.find(s[i - 37]);
+		ii[i - 28] = str1.find(s[i - 22]);
+		ii[i - 27] = str1.find(s[i - 6]);
+		ii[i - 26] = str1.find(s[i - 51]);
+		ii[i - 25] = str1.find(s[i - 36]);
+		ii[i - 24] = str1.find(s[i - 21]);
+		ii[i - 23] = str1.find(s[i - 5]);
+		ii[i - 22] = str1.find(s[i - 50]);
+		ii[i - 21] = str1.find(s[i - 35]);
+		ii[i - 20] = str1.find(s[i - 20]);
+		//пятый десяток
+		ii[i - 19] = str1.find(s[i - 19]);
+		ii[i - 18] = str1.find(s[i - 49]);
+		ii[i - 17] = str1.find(s[i - 34]);
+		ii[i - 16] = str1.find(s[i - 33]);
+		ii[i - 15] = str1.find(s[i - 18]);
+		ii[i - 14] = str1.find(s[i - 32]);
+		ii[i - 13] = str1.find(s[i - 17]);
+		ii[i - 12] = str1.find(s[i - 16]);
+		ii[i - 11] = str1.find(s[i - 4]);
+		ii[i - 10] = str1.find(s[i - 31]);
+		//Шестой десяток
+		ii[i - 9] = str1.find(s[i - 3]);
+		ii[i - 8] = str1.find(s[i - 15]);
+		ii[i - 7] = str1.find(s[i - 48]);
+		ii[i - 6] = str1.find(s[i - 2]);
+		ii[i - 5] = str1.find(s[i - 1]);
+		ii[i - 4] = str1.find(s[i - 47]);
+		ii[i - 3] = str1.find(s[i - 46]);
+		ii[i - 2] = str1.find(s[i - 0]);
+		ii[i - 1] = str1.find(s[i - 30]);
+		ii[i - 0] = str1.find(s[i - 45]);
+		i += 59;
+	}
+
+	for (int y = 0; y < s.size(); y++) {
+		s[y] = str1[ii[y]];
+	}
+	cout << s << endl;
+
+	for (int ij = 59; ij < s.size(); ij++) { //считывание размера сообщения и цикл работы с каждым символом
+											 //Обратная замена символов
+											 //Первый десяток
+		ii[ij - 44] = str1.find(s[ij - 59]);
+		ii[ij - 59] = str1.find(s[ij - 58]);
+		ii[ij - 29] = str1.find(s[ij - 57]);
+		ii[ij - 43] = str1.find(s[ij - 56]);
+		ii[ij - 42] = str1.find(s[ij - 55]);
+		ii[ij - 28] = str1.find(s[ij - 54]);
+		ii[ij - 27] = str1.find(s[ij - 53]);
+		ii[ij - 41] = str1.find(s[ij - 52]);
+		ii[ij - 14] = str1.find(s[ij - 51]);
+		ii[ij - 26] = str1.find(s[ij - 50]);
+		//Второй десяток
+		ii[ij - 58] = str1.find(s[ij - 49]);
+		ii[ij - 25] = str1.find(s[ij - 48]);
+		ii[ij - 13] = str1.find(s[ij - 47]);
+		ii[ij - 12] = str1.find(s[ij - 46]);
+		ii[ij - 56] = str1.find(s[ij - 45]);
+		ii[ij - 11] = str1.find(s[ij - 44]);
+		ii[ij - 57] = str1.find(s[ij - 43]);
+		ii[ij - 55] = str1.find(s[ij - 42]);
+		ii[ij - 40] = str1.find(s[ij - 41]);
+		ii[ij - 10] = str1.find(s[ij - 40]);
+		//Третий десяток
+		ii[ij - 9] = str1.find(s[ij - 39]);
+		ii[ij - 54] = str1.find(s[ij - 38]);
+		ii[ij - 39] = str1.find(s[ij - 37]);
+		ii[ij - 24] = str1.find(s[ij - 36]);
+		ii[ij - 8] = str1.find(s[ij - 35]);
+		ii[ij - 53] = str1.find(s[ij - 34]);
+		ii[ij - 38] = str1.find(s[ij - 33]);
+		ii[ij - 23] = str1.find(s[ij - 32]);
+		ii[ij - 7] = str1.find(s[ij - 31]);
+		ii[ij - 52] = str1.find(s[ij - 30]);
+		//четвертый десяток
+		ii[ij - 37] = str1.find(s[ij - 29]);
+		ii[ij - 22] = str1.find(s[ij - 28]);
+		ii[ij - 6] = str1.find(s[ij - 27]);
+		ii[ij - 51] = str1.find(s[ij - 26]);
+		ii[ij - 36] = str1.find(s[ij - 25]);
+		ii[ij - 21] = str1.find(s[ij - 24]);
+		ii[ij - 5] = str1.find(s[ij - 23]);
+		ii[ij - 50] = str1.find(s[ij - 22]);
+		ii[ij - 35] = str1.find(s[ij - 21]);
+		ii[ij - 20] = str1.find(s[ij - 20]);
+		//пятый десяток
+		ii[ij - 19] = str1.find(s[ij - 19]);
+		ii[ij - 49] = str1.find(s[ij - 18]);
+		ii[ij - 34] = str1.find(s[ij - 17]);
+		ii[ij - 33] = str1.find(s[ij - 16]);
+		ii[ij - 18] = str1.find(s[ij - 15]);
+		ii[ij - 32] = str1.find(s[ij - 14]);
+		ii[ij - 17] = str1.find(s[ij - 13]);
+		ii[ij - 16] = str1.find(s[ij - 12]);
+		ii[ij - 4] = str1.find(s[ij - 11]);
+		ii[ij - 31] = str1.find(s[ij - 10]);
+		//Шестой десяток
+		ii[ij - 3] = str1.find(s[ij - 9]);
+		ii[ij - 15] = str1.find(s[ij - 8]);
+		ii[ij - 48] = str1.find(s[ij - 7]);
+		ii[ij - 2] = str1.find(s[ij - 6]);
+		ii[ij - 1] = str1.find(s[ij - 5]);
+		ii[ij - 47] = str1.find(s[ij - 4]);
+		ii[ij - 46] = str1.find(s[ij - 3]);
+		ii[ij - 0] = str1.find(s[ij - 2]);
+		ii[ij - 30] = str1.find(s[ij - 1]);
+		ii[ij - 45] = str1.find(s[ij - 0]);
+		ij += 59;
+	}
+	for (int yu = 0; yu < s.size(); yu++) {
+		s[yu] = str1[ii[yu]];
+	}
+	cout << "\nРасшифрование:\n";
+	for (int jh = 0; jh < zz; jh++) {
+		cout << s[jh]; //вывод расшифрованного сообщения*/
+	}
+	cout << endl << endl;
+}
+
 void a52() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
 	string s2;
@@ -6910,57 +7079,88 @@ int main() {
 	setlocale(LC_ALL, "Russian"); //добавление русского языка
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Введите сообщение:\n";
-	getline(cin, s); //считывание строки с сообщением
-	int c;
-	cout << "\nВведите номер нужного шифра : \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
-		"   Python - 5.Белазо\n   Python - 6.Виженер\n   Python - Сделать - 7.Матричный\n\n   С++ - 8.Плейфер\n"
-		"   С++ - 9.Вертикальная перестановка\n\n   Python - Сделать - 10.Решетка Кардано\n   Python - 11.Блокнот Шеннона\n"
-		"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
-		"   C++ - 17.ГОСТ 34.10-94\n   С++ - 18.ГОСТ 34.10-2012\n   С++ - 19.Магма\n\n   Python - 20.Диффи-Хеллман\n";
-	cin >> c;
-	if (c == 1)
-		system("atbash.py");
-	if (c == 2)
-		system("cezar.py");
-	if (c == 3)
-		system("polibiy.py");
-	if (c == 4)
-		system("tritemiy.py");
-	if (c == 5)
-		system("belazo.py");
-	if (c == 6)
-		system("vizhener.py");
-	if (c == 7)
-		//system("matrich.py");
-	if (c == 8)
-		pleif();
-	if (c == 9)
-		VertP();
-	if (c == 10)
-		system("kardano.py");
-	if (c == 11)
-		system("vernam.py");
-	if (c == 12)
-		system("A5f.py");
-	if (c == 13)
-		a52();
-	if (c == 14)
-		system("AES.py");
-	if (c == 15)
-		rsa();
-	if (c == 16)
-		system("ElGamal.py");
-	if (c == 17)
-		g341094();
-	if (c == 18)
-		g341012();
-	if (c == 19)
-		Magma(); 
-	if (c == 20)
-		system("Diffie-Hellman.py");
-	if (c > 20)
-		cout << "Данного значения не существует. Введите верное значение." << endl;
+	int i = 0;
+	while (i == 0) {
+		cout << "\nВведите сообщение:\n";
+		getline(cin, s); //считывание строки с сообщением
+		int c;
+		cout << "\nВведите номер нужного шифра : \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
+			"   Python - 5.Белазо\n   Python - 6.Виженер\n   Python - Сделать - 7.Матричный\n\n   С++ - 8.Плейфер\n"
+			"   С++ - 9.Вертикальная перестановка\n   C++ - 10.Решетка Кардано\n\n   Python - 11.Блокнот Шеннона\n"
+			"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
+			"   C++ - 17.ГОСТ 34.10-94\n   С++ - 18.ГОСТ 34.10-2012\n   С++ - 19.Магма\n\n   Python - 20.Диффи-Хеллман\n\n"
+			"   21.Выход из программы\n";
+		cin >> c;
+		system("cls");
+		switch (c) {
+		case 1:
+			system("atbash.py");
+			break;
+		case 2:
+			system("cezar.py");
+			break;
+		case 3:
+			system("polibiy.py");
+			break;
+		case 4:
+			system("tritemiy.py");
+			break;
+		case 5:
+			system("belazo.py");
+			break;
+		case 6:
+			system("vizhener.py");
+			break;
+		case 7:
+			//system("matrich.py");
+			break;
+		case 8:
+			pleif();
+			break;
+		case 9:
+			VertP();
+			break;
+		case 10:
+			Kard();
+			break;
+		case 11:
+			system("vernam.py");
+			break;
+		case 12:
+			system("A5f.py");
+			break;
+		case 13:
+			a52();
+			break;
+		case 14:
+			system("AES.py");
+			break;
+		case 15:
+			rsa();
+			break;
+		case 16:
+			system("ElGamal.py");
+			break;
+		case 17:
+			g341094();
+			break;
+		case 18:
+			g341012();
+			break;
+		case 19:
+			Magma();
+			break;
+		case 20:
+			system("Diffie-Hellman.py");
+			break;
+		case 21:
+			i++;
+			break;
+		default:
+			cout << "Данного значения не существует. Введите верное значение." << endl;
+			break;
+		}
+	}
 	std::system("pause");
 	return 0;
 }

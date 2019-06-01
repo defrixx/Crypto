@@ -19,7 +19,7 @@ void Numbers() {
 			bSimple = false;
 	}
 	if (G > P || bSimple == false) {
-		cout << "Неправильный ввод!!!" << endl;
+		cout << "Некорректный ввод!" << endl;
 		G = 0;
 		P = 0;
 		bSimple = true;
@@ -31,7 +31,7 @@ void Number2() {
 	cout << "Введите целое X (1 < X <= P - 1):" << endl;
 	cin >> X;
 	if (X < 1 || (P - 1) < X) {
-		cout << "Неправильный ввод!!!" << endl;
+		cout << "Некорретный ввод" << endl;
 		X = 0;
 		Number2();
 	}
@@ -69,13 +69,13 @@ void matr() {
 	string s2;
 	string s3;
 	string s4;
-	cout << "Matrix 3x3\n" << "Enter first strochka:\n";
+	cout << "Matrix 3x3\n" << "Enter first string:\n";
 	int z1, z2, z3;
 	cin >> z1 >> z2 >> z3;
-	cout << "Enter second strochka :\n"; //Ввод матрицы
+	cout << "Enter second string :\n"; //Ввод матрицы
 	int z4, z5, z6;
 	cin >> z4 >> z5 >> z6;
-	cout << "Enter third strochka :\n";
+	cout << "Enter third string :\n";
 	int z7, z8, z9;
 	cin >> z7 >> z8 >> z9;
 	int A = (z1 * z5 * z9 + z2 * z6 * z7 + z3 * z4 * z8) - (z3 * z5 * z7 + z2 * z4 * z9 + z1 * z8 * z6);
@@ -537,7 +537,7 @@ void Kard() {
 	cout << endl << endl;
 }
 
-void a52() {
+void a5s() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
 	string s2;
 	unsigned long long int pos, np, randd, F;
@@ -978,7 +978,7 @@ int g341094() {
 		cout << "Подпись верна!" << endl;
 	}
 	else {
-		cout << "Подпись не верна!" << endl;
+		cout << "Подпись неверна!" << endl;
 	}
 	return 0;
 }
@@ -1464,7 +1464,7 @@ int g341012() {
 		cout << "Подпись верна!" << endl;
 	}
 	else {
-		cout << "Подпись не верна!" << endl;
+		cout << "Подпись неверна!" << endl;
 	}
 	return 0;
 }
@@ -7182,10 +7182,10 @@ int main() {
 	SetConsoleOutputCP(1251);
 	int i = 0;
 	while (i == 0) {
-		cout << "\nВведите сообщение:\n";
+		cout << "\nВведите сообщение для работы C++:\n";
 		getline(cin, s); //считывание строки с сообщением
 		int c;
-		cout << "\nВведите номер нужного шифра : \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
+		cout << "\nВыберите шифр: \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
 			"   Python - 5.Белазо\n   Python - 6.Виженер\n\n   С++ - 7.Матричный\n   С++ - 8.Плейфер\n"
 			"   С++ - 9.Вертикальная перестановка\n   C++ - 10.Решетка Кардано\n\n   Python - 11.Блокнот Шеннона\n"
 			"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
@@ -7231,7 +7231,7 @@ int main() {
 			system("A5f.py");
 			break;
 		case 13:
-			a52();
+			a5s();
 			break;
 		case 14:
 			system("AES.py");
@@ -7258,7 +7258,7 @@ int main() {
 			i++;
 			break;
 		default:
-			cout << "Данного значения не существует. Введите верное значение." << endl;
+			cout << "Некорректный ввод." << endl;
 			break;
 		}
 	}

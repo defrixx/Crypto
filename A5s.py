@@ -43,10 +43,10 @@ for i in range(0, len(s)):
 		dva[i * 9 + 8] = 1
 
 # Перевод в двоичный код
-krya = ""
+dvoich = ""
 for i in range(0, int(len(s) * 9)):
-	krya += str(dva[i])
-print("Двочный код:", krya)
+	dvoich += str(dva[i])
+print("Двочный код:", dvoich)
 
 # Генерация ключа
 print_key = ""

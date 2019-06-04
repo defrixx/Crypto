@@ -6972,7 +6972,7 @@ void Magma() {
 }
 
 int main() {
-	setlocale(LC_ALL, "Russian"); //добавление русского языка
+	setlocale(LC_ALL, "Russian"); //добавление русского языка в консоль
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	int i = 0;

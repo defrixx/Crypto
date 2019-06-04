@@ -8,7 +8,7 @@
 using namespace std;
 unsigned long long int G, P, X, iSimple;
 bool bSimple = true;
-string s;
+string crtext;
 
 void Numbers() {
 	cout << "Введите простое P и целое G (G < P):" << endl;
@@ -83,29 +83,29 @@ void matr() {
 		cout << "Matrix ne obratima!\n";
 	}
 	else {
-		int dlina = s.size();
+		int dlina = crtext.size();
 		if (dlina % 3 == 1)
 			dlina = dlina + 2;
 		if (dlina % 3 == 2)
 			dlina = dlina + 1;
 		cout << "crypt info:\n";
 		for (int i = 0; i < dlina; i++) { //считывание размера сообщения и цикл работы с каждым символом
-			if (i % 3 == 0 & i < s.size())
-				pos = str1.find(s[i]);
-			if (i % 3 == 1 & i < s.size()) //Нахождение позиции символов в алфавите
-				pos2 = str1.find(s[i]);
-			if (i % 3 == 2 & i < s.size())
+			if (i % 3 == 0 & i < crtext.size())
+				pos = str1.find(crtext[i]);
+			if (i % 3 == 1 & i < crtext.size()) //Нахождение позиции символов в алфавите
+				pos2 = str1.find(crtext[i]);
+			if (i % 3 == 2 & i < crtext.size())
 			{
-				pos3 = str1.find(s[i]); //определение позиции символа в алфавите
+				pos3 = str1.find(crtext[i]); //определение позиции символа в алфавите
 				ii[i - 2] = pos * z1 + pos2 * z2 + pos3 * z3;
 				ii[i - 1] = pos * z4 + pos2 * z5 + pos3 * z6;
 				ii[i] = pos * z7 + pos2 * z8 + pos3 * z9;
 				cout << ii[i - 2] << " " << ii[i - 1] << " " << ii[i] << " ";
 				//шифрование символа
 			}
-			if (i % 3 == 1 & i > s.size() - 1)
+			if (i % 3 == 1 & i > crtext.size() - 1)
 				pos2 = 0;
-			if (i % 3 == 2 & i > s.size() - 1)
+			if (i % 3 == 2 & i > crtext.size() - 1)
 			{
 				pos3 = 0; //определение позиции символа в алфавите
 				ii[i - 2] = pos * z1 + pos2 * z2 + pos3 * z3;
@@ -133,29 +133,29 @@ void matr() {
 		cout << "Matrix transponirovannaya:\n" << v1 << "  " << v2 << "  " << v3 << endl << v4 << "  " << v5 << "  " << v6 << endl << v7 << "  " << v8 << "  " << v9 << endl;
 		cout << "Matrix obratnaya:\n" << v1 << "/" << A << "  " << v2 << "/" << A << "  " << v3 << "/" << A << "  " << endl << v4 << "/" << A << "  " << v5 << "/" << A << "  " << v6 << "/" << A << "  " << endl << v7 << "/" << A << "  " << v8 << "/" << A << "  " << v9 << "/" << A << "  " << endl;
 		for (int i = 0; i < dlina; i++) { //считывание размера сообщения и цикл работы с каждым символом
-			if (i % 3 == 0 & i < s.size())
-				pos = str1.find(s[i]);
-			if (i % 3 == 1 & i < s.size()) //Определение позиции символов в алфавите
-				pos2 = str1.find(s[i]);
-			if (i % 3 == 2 & i < s.size())
+			if (i % 3 == 0 & i < crtext.size())
+				pos = str1.find(crtext[i]);
+			if (i % 3 == 1 & i < crtext.size()) //Определение позиции символов в алфавите
+				pos2 = str1.find(crtext[i]);
+			if (i % 3 == 2 & i < crtext.size())
 			{
-				pos3 = str1.find(s[i]); //определение позиции символа в алфавите
-				s[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
-				s[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
-				s[i] = str1[(ii[i - 2] * v7 + ii[i - 1] * v8 + ii[i] * v9) / A];
+				pos3 = str1.find(crtext[i]); //определение позиции символа в алфавите
+				crtext[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
+				crtext[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
+				crtext[i] = str1[(ii[i - 2] * v7 + ii[i - 1] * v8 + ii[i] * v9) / A];
 				//шифрование символа
 			}
-			if (i % 3 == 1 & i > s.size() - 1)
+			if (i % 3 == 1 & i > crtext.size() - 1)
 				pos2 = 0;
-			if (i % 3 == 2 & i > s.size() - 1)
+			if (i % 3 == 2 & i > crtext.size() - 1)
 			{
 				pos3 = 0; //определение позиции символа в алфавите
-				s[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
-				s[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
+				crtext[i - 2] = str1[(ii[i - 2] * v1 + ii[i - 1] * v2 + ii[i] * v3) / A];
+				crtext[i - 1] = str1[(ii[i - 2] * v4 + ii[i - 1] * v5 + ii[i] * v6) / A];
 				//Шифрование последних символов
 			}
 		}
-		cout << "decrypt info:\n" << s << "\n"; //вывод расшифрованного сообщения
+		cout << "decrypt info:\n" << crtext << "\n"; //вывод расшифрованного сообщения
 	}
 }
 
@@ -168,49 +168,49 @@ void pleif() {
 	string str1 = "абвгдежзийклмнопрстуфхцчшщъыьэюя";
 	string str2 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"; //используемые алфавиты
 	string str3 = ".,-?!: ";
-	for (int i = 1; i < s.size(); i++) { //Разделение олинаковых букв
-		if (str1.find(s[i]) != string::npos) //определение нахождения символа в алфавите
-			pos2 = str1.find(s[i]);
-		if (str2.find(s[i]) != string::npos)  //определение нахождения символа в алфавите
-			pos2 = str2.find(s[i]);
-		if (str3.find(s[i]) != string::npos)  //определение нахождения символа в алфавите
-			pos2 = str3.find(s[i]);
-		if (str1.find(s[i - 1]) != string::npos)  //определение нахождения символа в алфавите
-			pos3 = str1.find(s[i - 1]);
-		if (str2.find(s[i - 1]) != string::npos)  //определение нахождения символа в алфавите
-			pos3 = str2.find(s[i - 1]);
-		if (str3.find(s[i - 1]) != string::npos)  //определение нахождения символа в алфавите
-			pos3 = str3.find(s[i - 1]);
+	for (int i = 1; i < crtext.size(); i++) { //Разделение олинаковых букв
+		if (str1.find(crtext[i]) != string::npos) //определение нахождения символа в алфавите
+			pos2 = str1.find(crtext[i]);
+		if (str2.find(crtext[i]) != string::npos)  //определение нахождения символа в алфавите
+			pos2 = str2.find(crtext[i]);
+		if (str3.find(crtext[i]) != string::npos)  //определение нахождения символа в алфавите
+			pos2 = str3.find(crtext[i]);
+		if (str1.find(crtext[i - 1]) != string::npos)  //определение нахождения символа в алфавите
+			pos3 = str1.find(crtext[i - 1]);
+		if (str2.find(crtext[i - 1]) != string::npos)  //определение нахождения символа в алфавите
+			pos3 = str2.find(crtext[i - 1]);
+		if (str3.find(crtext[i - 1]) != string::npos)  //определение нахождения символа в алфавите
+			pos3 = str3.find(crtext[i - 1]);
 		if (pos2 == pos3) {
-			s.insert(i, 1, 'Ъ'); // вставим 1 СИМВОЛ 'a', в позицию 0
+			crtext.insert(i, 1, 'Ъ'); // вставим 1 СИМВОЛ 'a', в позицию 0
 		}
 	}
-	cout << "Сообщение без рядом стоящих одинаковых букв:\n" << s << endl;
+	cout << "Сообщение без рядом стоящих одинаковых букв:\n" << crtext << endl;
 	cout << "Введите ключ(ТОЛЬКО ЗАГЛАВНЫЕ БУКВЫ):\n";
 	string key;
 	cin >> key;
-	if (s.size() % 2 != 0)
-		s = s + "Ъ"; //Дополнение сообщения до четного количества символов
+	if (crtext.size() % 2 != 0)
+		crtext = crtext + "Ъ"; //Дополнение сообщения до четного количества символов
 	int registr[1488];
-	for (int p = 0; p < s.size(); p++) { //Перевод сообщения в строчные буквы
+	for (int p = 0; p < crtext.size(); p++) { //Перевод сообщения в строчные буквы
 
-		if (str1.find(s[p]) != string::npos) {
+		if (str1.find(crtext[p]) != string::npos) {
 			registr[p] = 1;
-			pos = str1.find(s[p]); //Определение позиции символа в алфавите
+			pos = str1.find(crtext[p]); //Определение позиции символа в алфавите
 		}
-		if (str2.find(s[p]) != string::npos) {
+		if (str2.find(crtext[p]) != string::npos) {
 			registr[p] = 2;
-			pos = str2.find(s[p]); //Определение позиции символа в алфавите
+			pos = str2.find(crtext[p]); //Определение позиции символа в алфавите
 		}
-		if (str3.find(s[p]) != string::npos) {
+		if (str3.find(crtext[p]) != string::npos) {
 			registr[p] = 3;
-			pos = str3.find(s[p]); //Определение позиции символа в алфавите
+			pos = str3.find(crtext[p]); //Определение позиции символа в алфавите
 		}
-		s[p] = str2[pos]; //Замена символа
+		crtext[p] = str2[pos]; //Замена символа
 
 	}
 
-	cout << "Сообщение в нужном регистре:" << endl << s << endl;
+	cout << "Сообщение в нужном регистре:" << endl << crtext << endl;
 	string str4 = "                                ";
 	int alf[33]; //Создание таблицы
 	for (int i = 0; i < 33; i++)
@@ -240,57 +240,57 @@ void pleif() {
 	for (int i = 24; i < 32; i++)
 		cout << str4[i];
 	cout << endl;
-	for (int b = 1; b < s.size(); b++) { //Шифрование
-		pos4 = str4.find(s[b - 1]);  //Определение мест символов в алфавите
-		pos5 = str4.find(s[b]);
+	for (int b = 1; b < crtext.size(); b++) { //Шифрование
+		pos4 = str4.find(crtext[b - 1]);  //Определение мест символов в алфавите
+		pos5 = str4.find(crtext[b]);
 		if (pos4 / 8 == pos5 / 8) {
-			s[b - 1] = str4[((pos4 + 1) % 8) + (pos4 / 8) * 8];
-			s[b] = str4[((pos5 + 1) % 8) + (pos5 / 8) * 8]; //Замена в случае нахождения букв на одной строчке
+			crtext[b - 1] = str4[((pos4 + 1) % 8) + (pos4 / 8) * 8];
+			crtext[b] = str4[((pos5 + 1) % 8) + (pos5 / 8) * 8]; //Замена в случае нахождения букв на одной строчке
 		}
 		if (pos4 % 8 == pos5 % 8) {
-			s[b - 1] = str4[(pos4 + 8) % 32]; //Замена в случае нахождения букв в одном столбце
-			s[b] = str4[(pos5 + 8) % 32];
+			crtext[b - 1] = str4[(pos4 + 8) % 32]; //Замена в случае нахождения букв в одном столбце
+			crtext[b] = str4[(pos5 + 8) % 32];
 		}
 		if (pos4 / 8 != pos5 / 8 & pos4 % 8 != pos5 % 8) {
-			s[b - 1] = str4[pos4 - (pos4 % 8) + (pos5 % 8)]; //Замена в случае нахождения букв в противоположных местах
-			s[b] = str4[pos5 - (pos5 % 8) + (pos4 % 8)];
+			crtext[b - 1] = str4[pos4 - (pos4 % 8) + (pos5 % 8)]; //Замена в случае нахождения букв в противоположных местах
+			crtext[b] = str4[pos5 - (pos5 % 8) + (pos4 % 8)];
 		}
 		//cout << s[b - 1] << s[b] << endl;
 		b++;
 	}
-	cout << "Зашифрованное сообщение:" << endl << s << endl; //Вывод зашифрованного сообщения
-	for (int bb = 1; bb < s.size(); bb++) { //Расшифрование
-		pos4 = str4.find(s[bb - 1]);
-		pos5 = str4.find(s[bb]); //Определение мест символов в алфавите
+	cout << "Зашифрованное сообщение:" << endl << crtext << endl; //Вывод зашифрованного сообщения
+	for (int bb = 1; bb < crtext.size(); bb++) { //Расшифрование
+		pos4 = str4.find(crtext[bb - 1]);
+		pos5 = str4.find(crtext[bb]); //Определение мест символов в алфавите
 		if (pos4 / 8 == pos5 / 8) {
-			s[bb - 1] = str4[((pos4 + 7) % 8) + (pos4 / 8) * 8]; //Замена в случае нахождения букв на одной строчке
-			s[bb] = str4[((pos5 + 7) % 8) + (pos5 / 8) * 8];
+			crtext[bb - 1] = str4[((pos4 + 7) % 8) + (pos4 / 8) * 8]; //Замена в случае нахождения букв на одной строчке
+			crtext[bb] = str4[((pos5 + 7) % 8) + (pos5 / 8) * 8];
 		}
 		if (pos4 % 8 == pos5 % 8) {
-			s[bb - 1] = str4[(pos4 + 24) % 32]; //Замена в случае нахождения букв в одном столбце
-			s[bb] = str4[(pos5 + 24) % 32];
+			crtext[bb - 1] = str4[(pos4 + 24) % 32]; //Замена в случае нахождения букв в одном столбце
+			crtext[bb] = str4[(pos5 + 24) % 32];
 		}
 		if (pos4 / 8 != pos5 / 8 & pos4 % 8 != pos5 % 8) {
-			s[bb - 1] = str4[pos4 - (pos4 % 8) + (pos5 % 8)]; //Замена в случае нахождения букв в противоположных местах
-			s[bb] = str4[pos5 - (pos5 % 8) + (pos4 % 8)];
+			crtext[bb - 1] = str4[pos4 - (pos4 % 8) + (pos5 % 8)]; //Замена в случае нахождения букв в противоположных местах
+			crtext[bb] = str4[pos5 - (pos5 % 8) + (pos4 % 8)];
 		}
 		//cout << s[bb - 1] << s[bb] << endl;
 		bb++;
 	}
-	cout << "Pacшифрованное сообщение(без учета регистра):" << endl << s << endl;
-	for (int n = 0; n < s.size(); n++) {
-		pos = str2.find(s[n]);
+	cout << "Pacшифрованное сообщение(без учета регистра):" << endl << crtext << endl;
+	for (int n = 0; n < crtext.size(); n++) {
+		pos = str2.find(crtext[n]);
 		if (registr[n] == 1)
-			s[n] = str1[pos];
+			crtext[n] = str1[pos];
 		if (registr[n] == 2) //Постановка символов в нужный регистр
-			s[n] = str2[pos];
+			crtext[n] = str2[pos];
 		if (registr[n] == 3)
-			s[n] = str3[pos];
+			crtext[n] = str3[pos];
 	}
 	cout << "Pacшифрованное сообщение:" << endl;
-	for (int iii = 0; iii < s.size(); iii++) {
-		if (s[iii] != 'Ъ') {
-			cout << s[iii];
+	for (int iii = 0; iii < crtext.size(); iii++) {
+		if (crtext[iii] != 'Ъ') {
+			cout << crtext[iii];
 		}
 	}
 	cout << endl;
@@ -300,6 +300,7 @@ void VertP() {
 	int pos;
 	int pos2;
 	int pos3;
+	cout << "Сообщение - " << crtext << endl;
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
 	std::cout << "Введите ключ (только буквы одного регистра):\n";
 	string key;
@@ -307,8 +308,8 @@ void VertP() {
 	//string s2 = key + s;
 	string s3 = "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ";
 
-	while (s.size() % key.size() != 0) {
-		s = s + " ";
+	while (crtext.size() % key.size() != 0) {
+		crtext = crtext + " ";
 	}//Дополнение сообщения
 	int schet[25];
 	for (int i = 0; i < 25; i++)
@@ -328,9 +329,9 @@ void VertP() {
 	for (int x = 0; x < key.size(); x++) {
 		for (int b = 0; b < key.size(); b++) {
 			if (schet[b] == zz) {
-				for (int n = 0; n < s.size(); n++) {
+				for (int n = 0; n < crtext.size(); n++) {
 					if (n % key.size() == b) {
-						s3[zx] = s[n]; //замена символов относительно ключа
+						s3[zx] = crtext[n]; //замена символов относительно ключа
 						zx++;
 					}
 				}
@@ -338,11 +339,11 @@ void VertP() {
 			}
 		}
 	}
-	for (int vv = 0; vv < s.size(); vv++)
+	for (int vv = 0; vv < crtext.size(); vv++)
 		cout << s3[vv]; //Вывод зашифрованного сообщения
 	zz--;
 	zx--;
-	int nn = s.size();
+	int nn = crtext.size();
 	for (int x = 0; x < key.size(); x++) {
 		for (int b = 0; b < key.size(); b++) {
 			if (schet[b] == zz) {
@@ -353,7 +354,7 @@ void VertP() {
 						}
 						//cout << zx << "->" << n << endl;
 						//cout << s[n];
-						s[n] = s3[zx]; //Обратная замена символов
+						crtext[n] = s3[zx]; //Обратная замена символов
 									   //cout << s[n] << endl;
 						if (b == 0) {
 							n = n + key.size();
@@ -365,7 +366,7 @@ void VertP() {
 			}
 		}
 	}
-	cout << endl << "Расшифрованное сообщение:" << endl << s << endl; //Вывод расшифрованного сообщения
+	cout << endl << "Расшифрованное сообщение:" << endl << crtext << endl; //Вывод расшифрованного сообщения
 }
 
 void Kard() {
@@ -373,387 +374,175 @@ void Kard() {
 	int randd;
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
 	string s2;
-	int zz = s.size();
+	int zz = crtext.size();
 	cout << "Решетка Кардано 10х6:\n\n" //Вывод используемой решетки
 		<< "0100000000\n1000101100\n0100010001\n0001000100\n0100000000\n0010011001\n\n";
-	while (s.size() % 60 != 0) { //Дополонение сообщения
+	while (crtext.size() % 60 != 0) { //Дополонение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
 	cout << "Зашифрование:\n"; //вывод зашифрованного сообщения
-	for (int i = 59; i < s.size(); i++) { //Замена символов
+	for (int i = 59; i < crtext.size(); i++) { //Замена символов
 										  //Первый десяток
-		ii[i - 59] = str1.find(s[i - 44]);
-		ii[i - 58] = str1.find(s[i - 59]);
-		ii[i - 57] = str1.find(s[i - 29]);
-		ii[i - 56] = str1.find(s[i - 43]);
-		ii[i - 55] = str1.find(s[i - 42]);
-		ii[i - 54] = str1.find(s[i - 28]);
-		ii[i - 53] = str1.find(s[i - 27]);
-		ii[i - 52] = str1.find(s[i - 41]);
-		ii[i - 51] = str1.find(s[i - 14]);
-		ii[i - 50] = str1.find(s[i - 26]);
+		ii[i - 59] = str1.find(crtext[i - 44]);
+		ii[i - 58] = str1.find(crtext[i - 59]);
+		ii[i - 57] = str1.find(crtext[i - 29]);
+		ii[i - 56] = str1.find(crtext[i - 43]);
+		ii[i - 55] = str1.find(crtext[i - 42]);
+		ii[i - 54] = str1.find(crtext[i - 28]);
+		ii[i - 53] = str1.find(crtext[i - 27]);
+		ii[i - 52] = str1.find(crtext[i - 41]);
+		ii[i - 51] = str1.find(crtext[i - 14]);
+		ii[i - 50] = str1.find(crtext[i - 26]);
 		//Второй десяток
-		ii[i - 49] = str1.find(s[i - 58]);
-		ii[i - 48] = str1.find(s[i - 25]);
-		ii[i - 47] = str1.find(s[i - 13]);
-		ii[i - 46] = str1.find(s[i - 12]);
-		ii[i - 45] = str1.find(s[i - 56]);
-		ii[i - 44] = str1.find(s[i - 11]);
-		ii[i - 43] = str1.find(s[i - 57]);
-		ii[i - 42] = str1.find(s[i - 55]);
-		ii[i - 41] = str1.find(s[i - 40]);
-		ii[i - 40] = str1.find(s[i - 10]);
+		ii[i - 49] = str1.find(crtext[i - 58]);
+		ii[i - 48] = str1.find(crtext[i - 25]);
+		ii[i - 47] = str1.find(crtext[i - 13]);
+		ii[i - 46] = str1.find(crtext[i - 12]);
+		ii[i - 45] = str1.find(crtext[i - 56]);
+		ii[i - 44] = str1.find(crtext[i - 11]);
+		ii[i - 43] = str1.find(crtext[i - 57]);
+		ii[i - 42] = str1.find(crtext[i - 55]);
+		ii[i - 41] = str1.find(crtext[i - 40]);
+		ii[i - 40] = str1.find(crtext[i - 10]);
 		//Третий десяток
-		ii[i - 39] = str1.find(s[i - 9]);
-		ii[i - 38] = str1.find(s[i - 54]);
-		ii[i - 37] = str1.find(s[i - 39]);
-		ii[i - 36] = str1.find(s[i - 24]);
-		ii[i - 35] = str1.find(s[i - 8]);
-		ii[i - 34] = str1.find(s[i - 53]);
-		ii[i - 33] = str1.find(s[i - 38]);
-		ii[i - 32] = str1.find(s[i - 23]);
-		ii[i - 31] = str1.find(s[i - 7]);
-		ii[i - 30] = str1.find(s[i - 52]);
+		ii[i - 39] = str1.find(crtext[i - 9]);
+		ii[i - 38] = str1.find(crtext[i - 54]);
+		ii[i - 37] = str1.find(crtext[i - 39]);
+		ii[i - 36] = str1.find(crtext[i - 24]);
+		ii[i - 35] = str1.find(crtext[i - 8]);
+		ii[i - 34] = str1.find(crtext[i - 53]);
+		ii[i - 33] = str1.find(crtext[i - 38]);
+		ii[i - 32] = str1.find(crtext[i - 23]);
+		ii[i - 31] = str1.find(crtext[i - 7]);
+		ii[i - 30] = str1.find(crtext[i - 52]);
 		//четвертый десяток
-		ii[i - 29] = str1.find(s[i - 37]);
-		ii[i - 28] = str1.find(s[i - 22]);
-		ii[i - 27] = str1.find(s[i - 6]);
-		ii[i - 26] = str1.find(s[i - 51]);
-		ii[i - 25] = str1.find(s[i - 36]);
-		ii[i - 24] = str1.find(s[i - 21]);
-		ii[i - 23] = str1.find(s[i - 5]);
-		ii[i - 22] = str1.find(s[i - 50]);
-		ii[i - 21] = str1.find(s[i - 35]);
-		ii[i - 20] = str1.find(s[i - 20]);
+		ii[i - 29] = str1.find(crtext[i - 37]);
+		ii[i - 28] = str1.find(crtext[i - 22]);
+		ii[i - 27] = str1.find(crtext[i - 6]);
+		ii[i - 26] = str1.find(crtext[i - 51]);
+		ii[i - 25] = str1.find(crtext[i - 36]);
+		ii[i - 24] = str1.find(crtext[i - 21]);
+		ii[i - 23] = str1.find(crtext[i - 5]);
+		ii[i - 22] = str1.find(crtext[i - 50]);
+		ii[i - 21] = str1.find(crtext[i - 35]);
+		ii[i - 20] = str1.find(crtext[i - 20]);
 		//пятый десяток
-		ii[i - 19] = str1.find(s[i - 19]);
-		ii[i - 18] = str1.find(s[i - 49]);
-		ii[i - 17] = str1.find(s[i - 34]);
-		ii[i - 16] = str1.find(s[i - 33]);
-		ii[i - 15] = str1.find(s[i - 18]);
-		ii[i - 14] = str1.find(s[i - 32]);
-		ii[i - 13] = str1.find(s[i - 17]);
-		ii[i - 12] = str1.find(s[i - 16]);
-		ii[i - 11] = str1.find(s[i - 4]);
-		ii[i - 10] = str1.find(s[i - 31]);
+		ii[i - 19] = str1.find(crtext[i - 19]);
+		ii[i - 18] = str1.find(crtext[i - 49]);
+		ii[i - 17] = str1.find(crtext[i - 34]);
+		ii[i - 16] = str1.find(crtext[i - 33]);
+		ii[i - 15] = str1.find(crtext[i - 18]);
+		ii[i - 14] = str1.find(crtext[i - 32]);
+		ii[i - 13] = str1.find(crtext[i - 17]);
+		ii[i - 12] = str1.find(crtext[i - 16]);
+		ii[i - 11] = str1.find(crtext[i - 4]);
+		ii[i - 10] = str1.find(crtext[i - 31]);
 		//Шестой десяток
-		ii[i - 9] = str1.find(s[i - 3]);
-		ii[i - 8] = str1.find(s[i - 15]);
-		ii[i - 7] = str1.find(s[i - 48]);
-		ii[i - 6] = str1.find(s[i - 2]);
-		ii[i - 5] = str1.find(s[i - 1]);
-		ii[i - 4] = str1.find(s[i - 47]);
-		ii[i - 3] = str1.find(s[i - 46]);
-		ii[i - 2] = str1.find(s[i - 0]);
-		ii[i - 1] = str1.find(s[i - 30]);
-		ii[i - 0] = str1.find(s[i - 45]);
+		ii[i - 9] = str1.find(crtext[i - 3]);
+		ii[i - 8] = str1.find(crtext[i - 15]);
+		ii[i - 7] = str1.find(crtext[i - 48]);
+		ii[i - 6] = str1.find(crtext[i - 2]);
+		ii[i - 5] = str1.find(crtext[i - 1]);
+		ii[i - 4] = str1.find(crtext[i - 47]);
+		ii[i - 3] = str1.find(crtext[i - 46]);
+		ii[i - 2] = str1.find(crtext[i - 0]);
+		ii[i - 1] = str1.find(crtext[i - 30]);
+		ii[i - 0] = str1.find(crtext[i - 45]);
 		i += 59;
 	}
 
-	for (int y = 0; y < s.size(); y++) {
-		s[y] = str1[ii[y]];
+	for (int y = 0; y < crtext.size(); y++) {
+		crtext[y] = str1[ii[y]];
 	}
-	cout << s << endl;
+	cout << crtext << endl;
 
-	for (int ij = 59; ij < s.size(); ij++) { //считывание размера сообщения и цикл работы с каждым символом
+	for (int ij = 59; ij < crtext.size(); ij++) { //считывание размера сообщения и цикл работы с каждым символом
 											 //Обратная замена символов
 											 //Первый десяток
-		ii[ij - 44] = str1.find(s[ij - 59]);
-		ii[ij - 59] = str1.find(s[ij - 58]);
-		ii[ij - 29] = str1.find(s[ij - 57]);
-		ii[ij - 43] = str1.find(s[ij - 56]);
-		ii[ij - 42] = str1.find(s[ij - 55]);
-		ii[ij - 28] = str1.find(s[ij - 54]);
-		ii[ij - 27] = str1.find(s[ij - 53]);
-		ii[ij - 41] = str1.find(s[ij - 52]);
-		ii[ij - 14] = str1.find(s[ij - 51]);
-		ii[ij - 26] = str1.find(s[ij - 50]);
+		ii[ij - 44] = str1.find(crtext[ij - 59]);
+		ii[ij - 59] = str1.find(crtext[ij - 58]);
+		ii[ij - 29] = str1.find(crtext[ij - 57]);
+		ii[ij - 43] = str1.find(crtext[ij - 56]);
+		ii[ij - 42] = str1.find(crtext[ij - 55]);
+		ii[ij - 28] = str1.find(crtext[ij - 54]);
+		ii[ij - 27] = str1.find(crtext[ij - 53]);
+		ii[ij - 41] = str1.find(crtext[ij - 52]);
+		ii[ij - 14] = str1.find(crtext[ij - 51]);
+		ii[ij - 26] = str1.find(crtext[ij - 50]);
 		//Второй десяток
-		ii[ij - 58] = str1.find(s[ij - 49]);
-		ii[ij - 25] = str1.find(s[ij - 48]);
-		ii[ij - 13] = str1.find(s[ij - 47]);
-		ii[ij - 12] = str1.find(s[ij - 46]);
-		ii[ij - 56] = str1.find(s[ij - 45]);
-		ii[ij - 11] = str1.find(s[ij - 44]);
-		ii[ij - 57] = str1.find(s[ij - 43]);
-		ii[ij - 55] = str1.find(s[ij - 42]);
-		ii[ij - 40] = str1.find(s[ij - 41]);
-		ii[ij - 10] = str1.find(s[ij - 40]);
+		ii[ij - 58] = str1.find(crtext[ij - 49]);
+		ii[ij - 25] = str1.find(crtext[ij - 48]);
+		ii[ij - 13] = str1.find(crtext[ij - 47]);
+		ii[ij - 12] = str1.find(crtext[ij - 46]);
+		ii[ij - 56] = str1.find(crtext[ij - 45]);
+		ii[ij - 11] = str1.find(crtext[ij - 44]);
+		ii[ij - 57] = str1.find(crtext[ij - 43]);
+		ii[ij - 55] = str1.find(crtext[ij - 42]);
+		ii[ij - 40] = str1.find(crtext[ij - 41]);
+		ii[ij - 10] = str1.find(crtext[ij - 40]);
 		//Третий десяток
-		ii[ij - 9] = str1.find(s[ij - 39]);
-		ii[ij - 54] = str1.find(s[ij - 38]);
-		ii[ij - 39] = str1.find(s[ij - 37]);
-		ii[ij - 24] = str1.find(s[ij - 36]);
-		ii[ij - 8] = str1.find(s[ij - 35]);
-		ii[ij - 53] = str1.find(s[ij - 34]);
-		ii[ij - 38] = str1.find(s[ij - 33]);
-		ii[ij - 23] = str1.find(s[ij - 32]);
-		ii[ij - 7] = str1.find(s[ij - 31]);
-		ii[ij - 52] = str1.find(s[ij - 30]);
+		ii[ij - 9] = str1.find(crtext[ij - 39]);
+		ii[ij - 54] = str1.find(crtext[ij - 38]);
+		ii[ij - 39] = str1.find(crtext[ij - 37]);
+		ii[ij - 24] = str1.find(crtext[ij - 36]);
+		ii[ij - 8] = str1.find(crtext[ij - 35]);
+		ii[ij - 53] = str1.find(crtext[ij - 34]);
+		ii[ij - 38] = str1.find(crtext[ij - 33]);
+		ii[ij - 23] = str1.find(crtext[ij - 32]);
+		ii[ij - 7] = str1.find(crtext[ij - 31]);
+		ii[ij - 52] = str1.find(crtext[ij - 30]);
 		//четвертый десяток
-		ii[ij - 37] = str1.find(s[ij - 29]);
-		ii[ij - 22] = str1.find(s[ij - 28]);
-		ii[ij - 6] = str1.find(s[ij - 27]);
-		ii[ij - 51] = str1.find(s[ij - 26]);
-		ii[ij - 36] = str1.find(s[ij - 25]);
-		ii[ij - 21] = str1.find(s[ij - 24]);
-		ii[ij - 5] = str1.find(s[ij - 23]);
-		ii[ij - 50] = str1.find(s[ij - 22]);
-		ii[ij - 35] = str1.find(s[ij - 21]);
-		ii[ij - 20] = str1.find(s[ij - 20]);
+		ii[ij - 37] = str1.find(crtext[ij - 29]);
+		ii[ij - 22] = str1.find(crtext[ij - 28]);
+		ii[ij - 6] = str1.find(crtext[ij - 27]);
+		ii[ij - 51] = str1.find(crtext[ij - 26]);
+		ii[ij - 36] = str1.find(crtext[ij - 25]);
+		ii[ij - 21] = str1.find(crtext[ij - 24]);
+		ii[ij - 5] = str1.find(crtext[ij - 23]);
+		ii[ij - 50] = str1.find(crtext[ij - 22]);
+		ii[ij - 35] = str1.find(crtext[ij - 21]);
+		ii[ij - 20] = str1.find(crtext[ij - 20]);
 		//пятый десяток
-		ii[ij - 19] = str1.find(s[ij - 19]);
-		ii[ij - 49] = str1.find(s[ij - 18]);
-		ii[ij - 34] = str1.find(s[ij - 17]);
-		ii[ij - 33] = str1.find(s[ij - 16]);
-		ii[ij - 18] = str1.find(s[ij - 15]);
-		ii[ij - 32] = str1.find(s[ij - 14]);
-		ii[ij - 17] = str1.find(s[ij - 13]);
-		ii[ij - 16] = str1.find(s[ij - 12]);
-		ii[ij - 4] = str1.find(s[ij - 11]);
-		ii[ij - 31] = str1.find(s[ij - 10]);
+		ii[ij - 19] = str1.find(crtext[ij - 19]);
+		ii[ij - 49] = str1.find(crtext[ij - 18]);
+		ii[ij - 34] = str1.find(crtext[ij - 17]);
+		ii[ij - 33] = str1.find(crtext[ij - 16]);
+		ii[ij - 18] = str1.find(crtext[ij - 15]);
+		ii[ij - 32] = str1.find(crtext[ij - 14]);
+		ii[ij - 17] = str1.find(crtext[ij - 13]);
+		ii[ij - 16] = str1.find(crtext[ij - 12]);
+		ii[ij - 4] = str1.find(crtext[ij - 11]);
+		ii[ij - 31] = str1.find(crtext[ij - 10]);
 		//Шестой десяток
-		ii[ij - 3] = str1.find(s[ij - 9]);
-		ii[ij - 15] = str1.find(s[ij - 8]);
-		ii[ij - 48] = str1.find(s[ij - 7]);
-		ii[ij - 2] = str1.find(s[ij - 6]);
-		ii[ij - 1] = str1.find(s[ij - 5]);
-		ii[ij - 47] = str1.find(s[ij - 4]);
-		ii[ij - 46] = str1.find(s[ij - 3]);
-		ii[ij - 0] = str1.find(s[ij - 2]);
-		ii[ij - 30] = str1.find(s[ij - 1]);
-		ii[ij - 45] = str1.find(s[ij - 0]);
+		ii[ij - 3] = str1.find(crtext[ij - 9]);
+		ii[ij - 15] = str1.find(crtext[ij - 8]);
+		ii[ij - 48] = str1.find(crtext[ij - 7]);
+		ii[ij - 2] = str1.find(crtext[ij - 6]);
+		ii[ij - 1] = str1.find(crtext[ij - 5]);
+		ii[ij - 47] = str1.find(crtext[ij - 4]);
+		ii[ij - 46] = str1.find(crtext[ij - 3]);
+		ii[ij - 0] = str1.find(crtext[ij - 2]);
+		ii[ij - 30] = str1.find(crtext[ij - 1]);
+		ii[ij - 45] = str1.find(crtext[ij - 0]);
 		ij += 59;
 	}
-	for (int yu = 0; yu < s.size(); yu++) {
-		s[yu] = str1[ii[yu]];
+	for (int yu = 0; yu < crtext.size(); yu++) {
+		crtext[yu] = str1[ii[yu]];
 	}
 	cout << "\nРасшифрование:\n";
 	for (int jh = 0; jh < zz; jh++) {
-		cout << s[jh]; //вывод расшифрованного сообщения*/
+		cout << crtext[jh]; //вывод расшифрованного сообщения*/
 	}
 	cout << endl << endl;
-}
-
-void a5s() {
-	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
-	string s2;
-	unsigned long long int pos, np, randd, F;
-	np = s.size();
-	while (s.size() % 9 != 0) {
-		randd = rand() % 65;
-		s2 = str1[randd];
-		s = s + s2;
-	} //Дополнение сообщения
-	int dva[5000];
-	for (int i = 0; i < 5000; i++)
-		dva[i] = 0;
-	for (int i = 0; i < s.size(); i++) { //Перевод в 2-иную систему счисления
-										 //256||128||64||32||16||8||4||2||1
-		pos = str1.find(s[i]);
-		if (pos >= 256) {
-			dva[i * 9 + 0] = 1;
-			pos = pos - 256;
-		}
-		if (pos >= 128) {
-			dva[i * 9 + 1] = 1;
-			pos = pos - 128;
-		}
-		if (pos >= 64) {
-			dva[i * 9 + 2] = 1;
-			pos = pos - 64;
-		}
-		if (pos >= 32) {
-			dva[i * 9 + 3] = 1;
-			pos = pos - 32;
-		}
-		if (pos >= 16) {
-			dva[i * 9 + 4] = 1;
-			pos = pos - 16;
-		}
-		if (pos >= 8) {
-			dva[i * 9 + 5] = 1;
-			pos = pos - 8;
-		}
-		if (pos >= 4) {
-			dva[i * 9 + 6] = 1;
-			pos = pos - 4;
-		}
-		if (pos >= 2) {
-			dva[i * 9 + 7] = 1;
-			pos = pos - 2;
-		}
-		if (pos == 1) {
-			dva[i * 9 + 8] = 1;
-		}
-	}
-	cout << "Двочный код:" << endl;
-	for (int i = 0; i < s.size() * 9; i++)
-		cout << dva[i];
-	cout << endl;
-	int sh[5000];
-	int gamma[81];
-	cout << "Сгенерированный ключ:" << endl;
-	for (int i = 0; i < 81; i++) { //Генерация ключа
-		randd = rand() % 2; //Рандом от 0 до 1
-		gamma[i] = randd;
-		cout << gamma[i];
-	}
-	cout << endl;
-	int zam;
-	for (int i = 0; i < 5000; i++)
-		sh[i] = 0;
-	cout << "Зашифрованный двоичный код:" << endl;
-	for (int j = 0; j < 5000; j++) {
-		F = gamma[67] * gamma[71] | gamma[71] * gamma[74] | gamma[74] * gamma[67];
-		if (F == gamma[8]) {
-			zam = gamma[18] ^ gamma[17] ^ gamma[16] ^ gamma[13];
-			gamma[18] = gamma[17];
-			gamma[17] = gamma[16];
-			gamma[16] = gamma[15];
-			gamma[15] = gamma[14];
-			gamma[14] = gamma[13];
-			gamma[13] = gamma[12];
-			gamma[12] = gamma[11];
-			gamma[11] = gamma[10];
-			gamma[10] = gamma[9];
-			gamma[9] = gamma[8];
-			gamma[8] = gamma[7];
-			gamma[7] = gamma[6];
-			gamma[6] = gamma[5];
-			gamma[5] = gamma[4];
-			gamma[4] = gamma[3];
-			gamma[3] = gamma[2];
-			gamma[2] = gamma[1];
-			gamma[1] = gamma[0];
-			gamma[0] = zam;
-		}
-		if (F == gamma[29]) {
-			zam = gamma[40] ^ gamma[39];
-			gamma[40] = gamma[39];
-			gamma[39] = gamma[38];
-			gamma[38] = gamma[37];
-			gamma[37] = gamma[36];
-			gamma[36] = gamma[35];
-			gamma[35] = gamma[34];
-			gamma[34] = gamma[33];
-			gamma[33] = gamma[32];
-			gamma[32] = gamma[31];
-			gamma[31] = gamma[30];
-			gamma[30] = gamma[29];
-			gamma[29] = gamma[28];
-			gamma[28] = gamma[27];
-			gamma[27] = gamma[26];
-			gamma[26] = gamma[25];
-			gamma[25] = gamma[24];
-			gamma[24] = gamma[23];
-			gamma[23] = gamma[22];
-			gamma[22] = gamma[21];
-			gamma[21] = gamma[20];
-			gamma[20] = gamma[19];
-			gamma[19] = zam;
-		}
-		if (F == gamma[51]) {
-			zam = gamma[63] ^ gamma[62] ^ gamma[61] ^ gamma[48];
-			gamma[63] = gamma[62];
-			gamma[62] = gamma[61];
-			gamma[61] = gamma[60];
-			gamma[60] = gamma[59];
-			gamma[59] = gamma[58];
-			gamma[58] = gamma[57];
-			gamma[57] = gamma[56];
-			gamma[56] = gamma[55];
-			gamma[55] = gamma[54];
-			gamma[54] = gamma[53];
-			gamma[53] = gamma[52];
-			gamma[52] = gamma[51];
-			gamma[51] = gamma[50];
-			gamma[50] = gamma[49];
-			gamma[49] = gamma[48];
-			gamma[48] = gamma[47];
-			gamma[47] = gamma[46];
-			gamma[46] = gamma[45];
-			gamma[45] = gamma[44];
-			gamma[44] = gamma[43];
-			gamma[43] = gamma[42];
-			gamma[42] = gamma[41];
-			gamma[41] = zam;
-		}
-		zam = gamma[80] ^ gamma[74];
-		gamma[80] = gamma[79];
-		gamma[79] = gamma[78];
-		gamma[78] = gamma[77];
-		gamma[77] = gamma[76];
-		gamma[76] = gamma[75];
-		gamma[75] = gamma[74];
-		gamma[74] = gamma[73];
-		gamma[73] = gamma[72];
-		gamma[72] = gamma[71];
-		gamma[71] = gamma[70];
-		gamma[70] = gamma[69];
-		gamma[69] = gamma[68];
-		gamma[68] = gamma[67];
-		gamma[67] = gamma[66];
-		gamma[66] = gamma[65];
-		gamma[65] = gamma[64];
-		gamma[64] = zam;
-		//нахождение выходного бита
-		sh[j] = gamma[12] ^ gamma[14] ^ gamma[15] ^ gamma[18] ^ gamma[40] ^ gamma[35] ^ gamma[32] ^ gamma[28] ^ gamma[54] ^ gamma[57] ^ gamma[59] ^ gamma[63];
-	}
-	for (int i = 0; i < s.size() * 9; i++) {
-		cout << sh[i];
-	}
-	cout << endl;
-	cout << "Зашифрованный текст (в двоичном виде):" << endl;
-	for (int i = 0; i < s.size() / 9; i++) {
-		for (int j = 0; j < 81; j++) {
-			dva[j + i * 81] = dva[j + i * 81] ^ sh[j];
-			cout << dva[j + i * 81];
-		}
-	}
-	cout << endl << "Расшифрованный текст (в двоичном виде):" << endl;
-	for (int i = 0; i < s.size() / 9; i++) {
-		for (int j = 0; j < 81; j++) {
-			dva[j + i * 81] = dva[j + i * 81] ^ sh[j];
-			cout << dva[j + i * 81];
-		}
-	}
-	for (int i = 0; i < s.size(); i++) { //Перевод в 10-ричную систему счисления
-										 //128||64||32||16||8||4||2||1
-		pos = 0;
-		if (dva[i * 9 + 0] == 1)
-			pos = pos + 256;
-		if (dva[i * 9 + 1] == 1)
-			pos = pos + 128;
-		if (dva[i * 9 + 2] == 1)
-			pos = pos + 64;
-		if (dva[i * 9 + 3] == 1)
-			pos = pos + 32;
-		if (dva[i * 9 + 4] == 1)
-			pos = pos + 16;
-		if (dva[i * 9 + 5] == 1)
-			pos = pos + 8;
-		if (dva[i * 9 + 6] == 1)
-			pos = pos + 4;
-		if (dva[i * 9 + 7] == 1)
-			pos = pos + 2;
-		if (dva[i * 9 + 8] == 1)
-			pos = pos + 1;
-		s[i] = str1[pos];
-	}
-	cout << endl << "Расшифрованный текст:" << endl;
-	for (int i = 0; i < np; i++)
-		cout << s[i];
-	cout << endl;
 }
 
 int rsa() {
 	uint64_t pp = 0;
 	uint64_t qq = 0;
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Испольщуемый алфавит
-
+	cout << "Сообщение - " << crtext << endl;
 	cout << "Введите простые числа P и Q:\nР = ";
 	cin >> pp;
 	if (pp == 2) {
@@ -796,7 +585,7 @@ int rsa() {
 	//cout << endl;
 	for (int i = d; i > 1; i--) {
 		if (d % i == 0 && m % i == 0) {
-			cout << "D и M - не взаимно простые. Введите другое значение переменных" << endl;
+			cout << "D и M - не взаимно простые. Выберите другие значения" << endl;
 			system("pause");
 			return 0;
 		}
@@ -863,8 +652,8 @@ int rsa() {
 	uint64_t ost2;
 	uint64_t pos;
 	uint64_t hash(0);
-	for (int i(0); i < s.size(); i++) {
-		hash = ((hash + str1.find(s[i]) * (i + 1))) % (pp - 1); //Нахождение Хеша от сообщения
+	for (int i(0); i < crtext.size(); i++) {
+		hash = ((hash + str1.find(crtext[i]) * (i + 1))) % (pp - 1); //Нахождение Хеша от сообщения
 	}
 	if (hash == 1)
 		hash += 1;
@@ -881,10 +670,10 @@ int rsa() {
 	}
 	cout << "M' = " << mm << endl; //Расчёт М
 	if (mm == hash) {
-		cout << "Все здорово!" << endl;
+		cout << "Подпись верна!" << endl;
 	}
 	else {
-		cout << "Всё плохо!" << endl;
+		cout << "Подпись неверна!" << endl;
 	}
 	return 0;
 }
@@ -892,16 +681,19 @@ int rsa() {
 int g341094() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: ";
 	unsigned long long int P, Q, a, aa, x, y, k, r, ss, hash, v, z1, z2, u, u1, u2;
-	cout << "Введите большое простое P и простой сомножитель числа (Р-1) Q (Q < (P-1)):" << endl;
-	cin >> P >> Q; //ввод чисел
+	cout << "Сообщение - " << crtext << endl;
+	cout << "Введите большое простое P: " << endl;
+	cin >> P; //ввод чисел
+	cout << "Введите простой сомножитель числа (Р-1) Q (Q < (P-1)): " << endl; 
+	cin >> Q; //ввод чисел
 	for (int i = 2; i < Q; i++) {
 		if (Q % i == 0) {
-			cout << "G не простое число. Введите другое значение G" << endl;
+			cout << "P не простое число. Введите другое значение P" << endl;
 			return 0;
 		}
 	}
 	if ((P - 1) % Q != 0) {
-		cout << "G не является простым сомножителем (Р-1). Введите другое значение G" << endl;
+		cout << "Q не является простым сомножителем (Р-1). Введите другое значение Q" << endl;
 		std::system("pause");
 		return 0;
 	}
@@ -939,8 +731,8 @@ int g341094() {
 	}
 	r = r % Q;
 	hash = 3;
-	for (int i(0); i < s.size(); i++) {
-		hash = ((hash + str1.find(s[i]) * (i + 1))) % (P - 1);
+	for (int i(0); i < crtext.size(); i++) {
+		hash = ((hash + str1.find(crtext[i]) * (i + 1))) % (P - 1);
 	}
 	if (hash % Q == 0) {
 		hash += 2;
@@ -986,7 +778,9 @@ int g341094() {
 int g341012() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
 	int p;
-	cout << "Введите простое значение p:" << endl << "p = ";
+	cout << "Сообщение - " << crtext << endl;
+	cout << "Введите простое значение p:" << endl;
+	cout << "p = ";
 	cin >> p;
 	for (int i = 2; i < p; i++) {
 		if (p % i == 0) {
@@ -1273,8 +1067,8 @@ int g341012() {
 	cout << "Y = (" << xx << ", " << yy << ")" << endl;
 
 	int hash = 3;
-	for (int i = 0; i < s.size(); i++) { //Нахождение хеш-значения
-		hash = ((hash + str1.find(s[i]) * str1.find(s[i]))) % p;
+	for (int i = 0; i < crtext.size(); i++) { //Нахождение хеш-значения
+		hash = ((hash + str1.find(crtext[i]) * str1.find(crtext[i]))) % p;
 	}
 	cout << "Хеш-значение: " << hash << endl;
 
@@ -1335,8 +1129,8 @@ int g341012() {
 
 	cout << endl << "ПРОВЕРКА ПОДПИСИ" << endl;
 	hash = 3;
-	for (int i = 0; i < s.size(); i++) { //Нахождение хеш-значений
-		hash = ((hash + str1.find(s[i]) * str1.find(s[i]))) % p;
+	for (int i = 0; i < crtext.size(); i++) { //Нахождение хеш-значений
+		hash = ((hash + str1.find(crtext[i]) * str1.find(crtext[i]))) % p;
 	}
 	cout << "Хеш-значение: " << hash << endl;
 	if (r > z || ss > z || r <= 0 || ss <= 0) {
@@ -1475,21 +1269,21 @@ void imitovstavka() {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
-	int np = s.size();
+	int np = crtext.size();
 	int randd;
 	string s2;
-	while (s.size() < 16) {  //Дополнение сообщения
+	while (crtext.size() < 16) {  //Дополнение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
-	while (s.size() % 8 != 0) { //Дополнение сообщения
+	while (crtext.size() % 8 != 0) { //Дополнение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
-	int dva[1100];
-	int shifr[1100];
+	int dva[2200];
+	int shifr[2200];
 	for (int i = 0; i < 1100; i++) {
 		dva[i] = 0;
 		shifr[i] = 0;
@@ -1500,14 +1294,14 @@ void imitovstavka() {
 		key[i] = rand() % 16;
 
 	int pos;
-	for (int i = 0; i < s.size(); i++) { //перевод в 16-ричную систему счисления
-		pos = str1.find(s[i]);
+	for (int i = 0; i < crtext.size(); i++) { //перевод в 16-ричную систему счисления
+		pos = str1.find(crtext[i]);
 		dva[i * 2] = pos / 16;
 		dva[i * 2 + 1] = pos % 16;
 	}
 
 	int dlina;
-	for (int i = 0; i < s.size() * 2; i++) {
+	for (int i = 0; i < crtext.size() * 2; i++) {
 		dlina = i + 1;
 	}
 
@@ -2195,17 +1989,17 @@ void imitovstavka() {
 
 void prZamena() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
-	int np = s.size();
+	int np = crtext.size();
 	int randd;
 	string s2;
-	while (s.size() % 8 != 0) { //Дополнение сообщения
+	while (crtext.size() % 8 != 0) { //Дополнение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
 
-	int dva[1100];
-	int shifr[1100];
+	int dva[2200];
+	int shifr[2200];
 	for (int i = 0; i < 1100; i++) {
 		dva[i] = 0;
 		shifr[i] = 0;
@@ -2216,14 +2010,14 @@ void prZamena() {
 		key[i] = rand() % 16;
 
 	int pos;
-	for (int i = 0; i < s.size(); i++) { //Перевод в 16-ричную систему счисления
-		pos = str1.find(s[i]);
+	for (int i = 0; i < crtext.size(); i++) { //Перевод в 16-ричную систему счисления
+		pos = str1.find(crtext[i]);
 		dva[i * 2] = pos / 16;
 		dva[i * 2 + 1] = pos % 16;
 	}
 
 	int dlina;
-	for (int i = 0; i < s.size() * 2; i++) {
+	for (int i = 0; i < crtext.size() * 2; i++) {
 		dlina = i + 1;
 	}
 	int l[8], r[8];
@@ -3333,8 +3127,8 @@ void prZamena() {
 	cout << endl << "Расшифрованное сообщение:" << endl;
 
 	for (int i = 0; i < np; i++) {
-		s[i] = str1[dva[i * 2] * 16 + dva[i * 2 + 1]];
-		cout << s[i];
+		crtext[i] = str1[dva[i * 2] * 16 + dva[i * 2 + 1]];
+		cout << crtext[i];
 	}
 	cout << endl;
 }
@@ -3346,16 +3140,16 @@ void Gamma() {
 	for (int i = 1; i < 8; i++) {
 		consts[i] = 1;
 	}
-	int zz = s.size();
+	int zz = crtext.size();
 	int randd;
 	string s2;
-	while (s.size() % 8 != 0) { //Дополнение сообщения
+	while (crtext.size() % 8 != 0) { //Дополнение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
 
-	std::cout << endl << "Дополненное сообщение: " << endl << s << endl;
+	std::cout << endl << "Дополненное сообщение: " << endl << crtext << endl;
 
 	int posilka[8], posilka_zap[8];
 	for (int i = 0; i < 8; i++) {
@@ -3387,7 +3181,7 @@ void Gamma() {
 	for (int i = 0; i < 32; i++)
 		dvadva[i] = 0;
 	int dvadva_zam;
-	for (int j = 0; j < (s.size() / 8); j++) {
+	for (int j = 0; j < (crtext.size() / 8); j++) {
 		//Начало сети Фейстеля
 		for (int i = 0; i < 8; i++) {
 			dva[i * 2] = posilka[i] / 16;
@@ -4610,7 +4404,7 @@ void Gamma() {
 		//Конец сети Фейстеля
 
 		for (int i = 8 * j; i < 8 + 8 * j; i++) {
-			int pos = str1.find(s[i]);
+			int pos = str1.find(crtext[i]);
 			xx = pos ^ posilka[zzz];
 			if (xx >= 71)
 				kost[i] = 71;
@@ -4618,17 +4412,17 @@ void Gamma() {
 				kost[i] = 142;
 			if (xx >= 213)
 				kost[i] = 213;
-			s[i] = str1[(pos ^ posilka[zzz]) % 71];
+			crtext[i] = str1[(pos ^ posilka[zzz]) % 71];
 			zzz++;
 		}
 		zzz = 0;
 	}
 
-	std::cout << endl << "Зашифрованное сообщение:\n" << s << endl;
+	std::cout << endl << "Зашифрованное сообщение:\n" << crtext << endl;
 
 	//расшифрование
 
-	for (int j = 0; j < (s.size() / 8); j++) {
+	for (int j = 0; j < (crtext.size() / 8); j++) {
 		//Начало сети Фейстеля
 		for (int i = 0; i < 8; i++) {
 			dva[i * 2] = posilka_zap[i] / 16;
@@ -5850,9 +5644,9 @@ void Gamma() {
 		//Конец сети Фейстеля
 
 		for (int i = 8 * j; i < 8 + 8 * j; i++) {
-			int pos = str1.find(s[i]);
+			int pos = str1.find(crtext[i]);
 			pos = pos + kost[i];
-			s[i] = str1[(pos ^ posilka_zap[zzz]) % 71];
+			crtext[i] = str1[(pos ^ posilka_zap[zzz]) % 71];
 			zzz++;
 		}
 		zzz = 0;
@@ -5860,23 +5654,23 @@ void Gamma() {
 
 	std::cout << endl << "Расшифрованное сообщение:\n";
 	for (int i = 0; i < zz; i++) {
-		std::cout << s[i];
+		std::cout << crtext[i];
 	}
 	std::cout << endl;
 }
 
 void GammaOBR() {
 	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
-	int zz = s.size();
+	int zz = crtext.size();
 	int randd;
 	string s2;
-	while (s.size() % 8 != 0) { //Дополнение сообщения
+	while (crtext.size() % 8 != 0) { //Дополнение сообщения
 		randd = rand() % 65;
 		s2 = str1[randd];
-		s = s + s2;
+		crtext = crtext + s2;
 	}
 
-	std::cout << endl << "Дополненное сообщение: " << endl << s << endl;
+	std::cout << endl << "Дополненное сообщение: " << endl << crtext << endl;
 
 	int posilka[8], posilka_zap[8];
 	for (int i = 0; i < 8; i++) {
@@ -5911,7 +5705,7 @@ void GammaOBR() {
 	int dvadva_zam;
 
 
-	for (int j = 0; j < (s.size() / 8); j++) {
+	for (int j = 0; j < (crtext.size() / 8); j++) {
 		//Начало сети Фейстеля
 		for (int i = 0; i < 8; i++) {
 			dva[i * 2] = posilka[i] / 16;
@@ -6520,7 +6314,7 @@ void GammaOBR() {
 		//Конец сети Фейстеля
 
 		for (int i = 8 * j; i < 8 + 8 * j; i++) {
-			int pos = str1.find(s[i]);
+			int pos = str1.find(crtext[i]);
 			xx = pos ^ posilka[zzz];
 			if (xx >= 71)
 				kost[i] = 71;
@@ -6528,17 +6322,17 @@ void GammaOBR() {
 				kost[i] = 142;
 			if (xx >= 213)
 				kost[i] = 213;
-			s[i] = str1[(pos ^ posilka[zzz]) % 71];
+			crtext[i] = str1[(pos ^ posilka[zzz]) % 71];
 			zzz++;
 		}
 		zzz = 0;
 	}
 
-	std::cout << endl << "Зашифрованное сообщение:\n" << s << endl;
+	std::cout << endl << "Зашифрованное сообщение:\n" << crtext << endl;
 
 	//расшифрование
 
-	for (int j = 0; j < (s.size() / 8); j++) {
+	for (int j = 0; j < (crtext.size() / 8); j++) {
 		//Начало сети Фейстеля
 		for (int i = 0; i < 8; i++) {
 			dva[i * 2] = posilka_zap[i] / 16;
@@ -7147,9 +6941,9 @@ void GammaOBR() {
 		//Конец сети Фейстеля
 
 		for (int i = 8 * j; i < 8 + 8 * j; i++) { //перевод из символов в буквы
-			int pos = str1.find(s[i]);
+			int pos = str1.find(crtext[i]);
 			pos = pos + kost[i];
-			s[i] = str1[(pos ^ posilka_zap[zzz]) % 71];
+			crtext[i] = str1[(pos ^ posilka_zap[zzz]) % 71];
 			zzz++;
 		}
 		zzz = 0;
@@ -7157,12 +6951,13 @@ void GammaOBR() {
 
 	std::cout << endl << "Расшифрованное сообщение:\n";
 	for (int i = 0; i < zz; i++) {
-		std::cout << s[i];
+		std::cout << crtext[i];
 	}
 	std::cout << endl;
 }
 
 void Magma() {
+	cout << "Сообщение - " << crtext << endl;
 	cout << "Введите номер нужного режима:\n1. Простая замена\n2. Гаммирование\n3. Гаммирование с обратной связью\n4. Имитовставка\n";
 	int a;
 	cin >> a;
@@ -7183,12 +6978,12 @@ int main() {
 	int i = 0;
 	while (i == 0) {
 		cout << "\nВведите сообщение для работы C++:\n";
-		getline(cin, s); //считывание строки с сообщением
+		getline(cin, crtext); //считывание строки с сообщением
 		int c;
 		cout << "\nВыберите шифр: \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
 			"   Python - 5.Белазо\n   Python - 6.Виженер\n\n   С++ - 7.Матричный\n   С++ - 8.Плейфер\n"
 			"   С++ - 9.Вертикальная перестановка\n   C++ - 10.Решетка Кардано\n\n   Python - 11.Блокнот Шеннона\n"
-			"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
+			"   Python - 12.А5/1\n   Python - 13.А5/2\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
 			"   C++ - 17.ГОСТ 34.10-94\n   С++ - 18.ГОСТ 34.10-2012\n   С++ - 19.Магма\n\n   Python - 20.Диффи-Хеллман\n\n"
 			"   21.Выход из программы\n";
 		cin >> c;
@@ -7231,7 +7026,7 @@ int main() {
 			system("A5f.py");
 			break;
 		case 13:
-			a5s();
+			system("A5s.py");
 			break;
 		case 14:
 			system("AES.py");

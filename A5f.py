@@ -10,7 +10,7 @@ while len(s) % 8 != 0:
     s2 = alph[randd]
     s = s + s2
 
-dva = [0]*4500
+dva = [0]*9000
 
 
 for i in range(0, len(s)):
@@ -50,7 +50,7 @@ for i in range(0, len(s)*8):
 print("Двочный код сообщения:", dvoich)
 
 print_key = ""
-sh = [0]*4500
+sh = [0]*9000
 gamma = [0] * 64
 
 # Генерируем ключ

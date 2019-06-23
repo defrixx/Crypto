@@ -538,6 +538,218 @@ void Kard() {
 	cout << endl << endl;
 }
 
+void a52() {
+	string str1 = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "; //Используемый алфавит
+	string crtext2;
+	unsigned long long int pos, np, randd, F;
+	np = crtext.size();
+	while (crtext.size() % 9 != 0) {
+		randd = rand() % 65;
+		crtext2 = str1[randd];
+		crtext = crtext + crtext2;
+	} //Дополнение сообщения
+	int dva[5000];
+	for (int i = 0; i < 5000; i++)
+		dva[i] = 0;
+	for (int i = 0; i < crtext.size(); i++) { //Перевод в 2-иную систему счисления
+										 //256||128||64||32||16||8||4||2||1
+		pos = str1.find(crtext[i]);
+		if (pos >= 256) {
+			dva[i * 9 + 0] = 1;
+			pos = pos - 256;
+		}
+		if (pos >= 128) {
+			dva[i * 9 + 1] = 1;
+			pos = pos - 128;
+		}
+		if (pos >= 64) {
+			dva[i * 9 + 2] = 1;
+			pos = pos - 64;
+		}
+		if (pos >= 32) {
+			dva[i * 9 + 3] = 1;
+			pos = pos - 32;
+		}
+		if (pos >= 16) {
+			dva[i * 9 + 4] = 1;
+			pos = pos - 16;
+		}
+		if (pos >= 8) {
+			dva[i * 9 + 5] = 1;
+			pos = pos - 8;
+		}
+		if (pos >= 4) {
+			dva[i * 9 + 6] = 1;
+			pos = pos - 4;
+		}
+		if (pos >= 2) {
+			dva[i * 9 + 7] = 1;
+			pos = pos - 2;
+		}
+		if (pos == 1) {
+			dva[i * 9 + 8] = 1;
+		}
+	}
+	cout << "Двочный код:" << endl;
+	for (int i = 0; i < crtext.size() * 9; i++)
+		cout << dva[i];
+	cout << endl;
+	int sh[5000];
+	int gamma[81];
+	cout << "Сгенерированный ключ:" << endl;
+	for (int i = 0; i < 81; i++) { //Генерация ключа
+		randd = rand() % 2; //Рандом от 0 до 1
+		gamma[i] = randd;
+		cout << gamma[i];
+	}
+	cout << endl;
+	int zam;
+	for (int i = 0; i < 5000; i++)
+		sh[i] = 0;
+	cout << "Зашифрованный двоичный код:" << endl;
+	for (int j = 0; j < 5000; j++) {
+		F = gamma[67] * gamma[71] | gamma[71] * gamma[74] | gamma[74] * gamma[67];
+		if (F == gamma[8]) {
+			zam = gamma[18] ^ gamma[17] ^ gamma[16] ^ gamma[13];
+			gamma[18] = gamma[17];
+			gamma[17] = gamma[16];
+			gamma[16] = gamma[15];
+			gamma[15] = gamma[14];
+			gamma[14] = gamma[13];
+			gamma[13] = gamma[12];
+			gamma[12] = gamma[11];
+			gamma[11] = gamma[10];
+			gamma[10] = gamma[9];
+			gamma[9] = gamma[8];
+			gamma[8] = gamma[7];
+			gamma[7] = gamma[6];
+			gamma[6] = gamma[5];
+			gamma[5] = gamma[4];
+			gamma[4] = gamma[3];
+			gamma[3] = gamma[2];
+			gamma[2] = gamma[1];
+			gamma[1] = gamma[0];
+			gamma[0] = zam;
+		}
+		if (F == gamma[29]) {
+			zam = gamma[40] ^ gamma[39];
+			gamma[40] = gamma[39];
+			gamma[39] = gamma[38];
+			gamma[38] = gamma[37];
+			gamma[37] = gamma[36];
+			gamma[36] = gamma[35];
+			gamma[35] = gamma[34];
+			gamma[34] = gamma[33];
+			gamma[33] = gamma[32];
+			gamma[32] = gamma[31];
+			gamma[31] = gamma[30];
+			gamma[30] = gamma[29];
+			gamma[29] = gamma[28];
+			gamma[28] = gamma[27];
+			gamma[27] = gamma[26];
+			gamma[26] = gamma[25];
+			gamma[25] = gamma[24];
+			gamma[24] = gamma[23];
+			gamma[23] = gamma[22];
+			gamma[22] = gamma[21];
+			gamma[21] = gamma[20];
+			gamma[20] = gamma[19];
+			gamma[19] = zam;
+		}
+		if (F == gamma[51]) {
+			zam = gamma[63] ^ gamma[62] ^ gamma[61] ^ gamma[48];
+			gamma[63] = gamma[62];
+			gamma[62] = gamma[61];
+			gamma[61] = gamma[60];
+			gamma[60] = gamma[59];
+			gamma[59] = gamma[58];
+			gamma[58] = gamma[57];
+			gamma[57] = gamma[56];
+			gamma[56] = gamma[55];
+			gamma[55] = gamma[54];
+			gamma[54] = gamma[53];
+			gamma[53] = gamma[52];
+			gamma[52] = gamma[51];
+			gamma[51] = gamma[50];
+			gamma[50] = gamma[49];
+			gamma[49] = gamma[48];
+			gamma[48] = gamma[47];
+			gamma[47] = gamma[46];
+			gamma[46] = gamma[45];
+			gamma[45] = gamma[44];
+			gamma[44] = gamma[43];
+			gamma[43] = gamma[42];
+			gamma[42] = gamma[41];
+			gamma[41] = zam;
+		}
+		zam = gamma[80] ^ gamma[74];
+		gamma[80] = gamma[79];
+		gamma[79] = gamma[78];
+		gamma[78] = gamma[77];
+		gamma[77] = gamma[76];
+		gamma[76] = gamma[75];
+		gamma[75] = gamma[74];
+		gamma[74] = gamma[73];
+		gamma[73] = gamma[72];
+		gamma[72] = gamma[71];
+		gamma[71] = gamma[70];
+		gamma[70] = gamma[69];
+		gamma[69] = gamma[68];
+		gamma[68] = gamma[67];
+		gamma[67] = gamma[66];
+		gamma[66] = gamma[65];
+		gamma[65] = gamma[64];
+		gamma[64] = zam;
+		//нахождение выходного бита
+		sh[j] = gamma[12] ^ gamma[14] ^ gamma[15] ^ gamma[18] ^ gamma[40] ^ gamma[35] ^ gamma[32] ^ gamma[28] ^ gamma[54] ^ gamma[57] ^ gamma[59] ^ gamma[63];
+	}
+	for (int i = 0; i < crtext.size() * 9; i++) {
+		cout << sh[i];
+	}
+	cout << endl;
+	cout << "Зашифрованный текст (в двоичном виде):" << endl;
+	for (int i = 0; i < crtext.size() / 9; i++) {
+		for (int j = 0; j < 81; j++) {
+			dva[j + i * 81] = dva[j + i * 81] ^ sh[j];
+			cout << dva[j + i * 81];
+		}
+	}
+	cout << endl << "Расшифрованный текст (в двоичном виде):" << endl;
+	for (int i = 0; i < crtext.size() / 9; i++) {
+		for (int j = 0; j < 81; j++) {
+			dva[j + i * 81] = dva[j + i * 81] ^ sh[j];
+			cout << dva[j + i * 81];
+		}
+	}
+	for (int i = 0; i < crtext.size(); i++) { //Перевод в 10-ричную систему счисления
+										 //128||64||32||16||8||4||2||1
+		pos = 0;
+		if (dva[i * 9 + 0] == 1)
+			pos = pos + 256;
+		if (dva[i * 9 + 1] == 1)
+			pos = pos + 128;
+		if (dva[i * 9 + 2] == 1)
+			pos = pos + 64;
+		if (dva[i * 9 + 3] == 1)
+			pos = pos + 32;
+		if (dva[i * 9 + 4] == 1)
+			pos = pos + 16;
+		if (dva[i * 9 + 5] == 1)
+			pos = pos + 8;
+		if (dva[i * 9 + 6] == 1)
+			pos = pos + 4;
+		if (dva[i * 9 + 7] == 1)
+			pos = pos + 2;
+		if (dva[i * 9 + 8] == 1)
+			pos = pos + 1;
+		crtext[i] = str1[pos];
+	}
+	cout << endl << "Расшифрованный текст:" << endl;
+	for (int i = 0; i < np; i++)
+		cout << crtext[i];
+	cout << endl;
+}
+
 int rsa() {
 	uint64_t pp = 0;
 	uint64_t qq = 0;
@@ -6983,7 +7195,7 @@ int main() {
 		cout << "\nВыберите шифр: \n   Python - 1.Атбаш\n   Python - 2.Цезарь\n   Python - 3.Полибий\n   Python - 4.Тритемий\n"
 			"   Python - 5.Белазо\n   Python - 6.Виженер\n\n   С++ - 7.Матричный\n   С++ - 8.Плейфер\n"
 			"   С++ - 9.Вертикальная перестановка\n   C++ - 10.Решетка Кардано\n\n   Python - 11.Блокнот Шеннона\n"
-			"   Python - 12.А5/1\n   Python - 13.А5/2\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
+			"   Python - 12.А5/1\n\n   С++ - 13.А5/2\n\n   Python - 14.АES\n\n   С++ - 15.RSA\n\n   Python - 16.Эль-Гамаль\n\n"
 			"   C++ - 17.ГОСТ 34.10-94\n   С++ - 18.ГОСТ 34.10-2012\n   С++ - 19.Магма\n\n   Python - 20.Диффи-Хеллман\n\n"
 			"   21.Выход из программы\n";
 		cin >> c;
@@ -7026,7 +7238,8 @@ int main() {
 			system("A5f.py");
 			break;
 		case 13:
-			system("A5s.py");
+			a52();
+			//system("A5s.py");
 			break;
 		case 14:
 			system("AES.py");

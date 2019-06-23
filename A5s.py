@@ -2,7 +2,7 @@ import random
 
 alph = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя.,-?!: "
 
-s = input("Введите сообщение:\n")    # ввод сообщения
+s = input("Введите сообщение: ")    # ввод сообщения
 np = len(s)
 while len(s) % 9 != 0:
 	randd = random.randint(0, 65)
@@ -10,8 +10,8 @@ while len(s) % 9 != 0:
 	s = s + s2
 
 dva = [0]*10000
-for i in range(0, 10000):
-	dva[i] = 0
+#for i in range(0, 10000):
+#	dva[i] = 0
 for i in range(0, len(s)):
 	# 256||128||64||32||16||8||4||2||1
 	pos = alph.find(s[i])
@@ -50,7 +50,7 @@ print("Двочный код:", dvoich)
 
 # Генерация ключа
 print_key = ""
-sh = [0]*10000
+sh = [0]*9000
 gamma = [0]*81
 for i in range(0, 81):
 	randd = random.randint(0, 1) # Рандом от 0 до 1
@@ -59,12 +59,12 @@ for i in range(0, 81):
 
 print("Сгенерированный ключ:", print_key)
 
-for i in range(0, 5000):
+for i in range(0, 4500):
 	sh[i] = 0
 
 # Выработка гаммы
-for j in range(0, 5000):
-	F = gamma[67] * gamma[71] or gamma[71] * gamma[74] or gamma[74] * gamma[67]
+for j in range(0, 4500):
+	F = gamma[67] and gamma[71] or gamma[71] and gamma[74] or gamma[74] and gamma[67]
 	if F == gamma[8]:
 		zam = gamma[18] ^ gamma[17] ^ gamma[16] ^ gamma[13]
 		gamma[18] = gamma[17]

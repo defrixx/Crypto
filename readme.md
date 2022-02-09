@@ -1,6 +1,6 @@
 # Crypto
 
-At this project i developed some chiphers:
+At this project i developed some chiphers modules:
 1. Atbash
 2. Cesar
 3. Polibiy
